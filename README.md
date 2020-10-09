@@ -1,4 +1,4 @@
-# The Fold
+# The Fold - Server
 
 People in the church have used paper programs for a long time which leads to wasted paper and wasted money. If they had a way to create and view their ward program on their phone, it would greatly reduce the waste and it would streamline the process of making the weekly sacrament programs.
 
