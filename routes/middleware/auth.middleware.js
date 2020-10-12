@@ -5,6 +5,7 @@ const UNAUTHORIZED = 401;
 const FORBIDDEN = 403;
 function loggedIn(req, res, next) {
   if (req.get("authToken") != undefined) {
+    //let userId= await dao.getUserFromAuth(req.get("authToken"))
     knex
       .from("auth_token")
       .where("auth_token", req.get("authToken"))
