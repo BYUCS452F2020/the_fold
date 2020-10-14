@@ -6,8 +6,10 @@ var knexHandler = require("./knex/cli_through_environment");
 var logger = require("morgan");
 var usersRouter = require("./routes/users");
 var wardRouter = require("./routes/ward");
+var createTables = require('./dao/createTables.js')
 
-knexHandler();
+// knexHandler();
+createTables();
 
 var app = express();
 
