@@ -1,15 +1,5 @@
 var connection = require('./connection.js')
 
-// function getPool() {
-//   return mysql.createPool({
-//     connectionLimit : "10",
-//     host     : 'localhost',
-//     user     : 'root',
-//     password : 'NY]*bn2*V}3v',
-//     database : 'the_fold'
-//   });
-// }
-
 async function createTables(){
 
     // get the connection
@@ -60,6 +50,18 @@ async function createTables(){
         }
       });
 
+      // create Ward table
+      let createWard = `create table if not exists Ward(
+        WardID int PRIMARY KEY auto_increment,
+        Name varchar(255) NOT NULL
+      )`;
+
+      await myConnection.query(createWard, function(err, results, fields) {
+        if (err) {
+          console.log(err.message);
+        }
+      });
+      
       // create WardAdmin table
       let createWardAdmin = `create table if not exists WardAdmin(
         WardAdminID int PRIMARY KEY auto_increment,
@@ -74,18 +76,6 @@ async function createTables(){
       )`;
 
       await myConnection.query(createWardAdmin, function(err, results, fields) {
-        if (err) {
-          console.log(err.message);
-        }
-      });
-
-      // create Ward table
-      let createWard = `create table if not exists Ward(
-        WardID int PRIMARY KEY auto_increment,
-        Name varchar(255) NOT NULL
-      )`;
-
-      await myConnection.query(createWard, function(err, results, fields) {
         if (err) {
           console.log(err.message);
         }
