@@ -51,6 +51,7 @@ async function createTables(){
     // create Ward table
     let createWard = `create table if not exists Ward(
       WardID int PRIMARY KEY auto_increment,
+      Code varchar(255) NOT NULL,
       Name varchar(255) NOT NULL
     )`;
 
