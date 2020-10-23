@@ -2,14 +2,14 @@ var createError = require("http-errors");
 var http = require("http");
 var express = require("express");
 var path = require("path");
-var knexHandler = require("./knex/cli_through_environment");
 var logger = require("morgan");
 var usersRouter = require("./routes/users");
 var wardRouter = require("./routes/ward");
-var createTables = require('./dao/createTables.js')
+var schema = require('./dao/schema.js')
 
 // knexHandler();
-createTables();
+// schema.dropTables();
+schema.createTables();
 
 var app = express();
 
