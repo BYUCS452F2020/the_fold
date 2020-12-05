@@ -5,11 +5,13 @@ var path = require("path");
 var logger = require("morgan");
 var usersRouter = require("./routes/users");
 var wardRouter = require("./routes/ward");
-var schema = require('./dao/schema.js')
+var firebase = require('./firebase.js');
+// var schema = require('./dao/schema.js')
 
 // knexHandler();
 // schema.dropTables();
-schema.createTables();
+// schema.createTables();
+firebase.startFirebase();
 
 var app = express();
 
