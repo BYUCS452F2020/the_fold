@@ -7,7 +7,6 @@ var randomstring = require("randomstring");
 const user = require("../dao/user.js");
 const ward = require("../dao/ward.js");
 const auth = require('../dao/authToken.js');
-
 const ADMIN = "admin";
 const MEMBER = "member";
 
@@ -25,7 +24,6 @@ router.get("/program*", async (req, res) => {
         permissionLevel = ADMIN;
       }
     }
-    //TODO sanitize program
     let programData = await ward.getProgram(wardId);
     let sanitizedProgramJson = [];
     programData.forEach(item => {
@@ -48,52 +46,6 @@ router.get("/program*", async (req, res) => {
       programJson: {programItems: sanitizedProgramJson},
     }
     res.json(responseObject);
-    // knex
-    //   .from("ward")
-    //   .where("ward_code", myUrl)
-    //   .then((rows) => {
-    //     if (rows.length != 0) {
-    //       let wardId = rows[0].id;
-
-    //       let responseObject = {};
-    //       responseObject.name = rows[0].name;
-    //       responseObject.programJson = JSON.parse(rows[0].program_json);
-    //       responseObject.permissionLevel = "";
-
-    //       //normal, not logged in user
-    //       let auth = req.get("authToken");
-    //       if (auth == undefined) {
-    //         res.json(responseObject);
-    //       } else {
-    //         knex
-    //           .from("auth_token")
-    //           .where("auth_token", auth)
-    //           .then((rows) => {
-    //             if (rows.length !== 0) {
-    //               let userId = rows[0].user_id;
-    //               knex
-    //                 .from("user_in_ward")
-    //                 .where({ ward_id: wardId, user_id: userId })
-    //                 .then((rows) => {
-    //                   if (rows.length != 0) {
-    //                     //logged into this ward.
-    //                     responseObject.permissionLevel =
-    //                       rows[0].permission_level;
-    //                     res.json(responseObject);
-    //                   } else {
-    //                     //not logged into ward but still logged in
-    //                     res.send(responseObject);
-    //                   }
-    //                 });
-    //             } else {
-    //               res.send(responseObject);
-    //             }
-    //           });
-    //       }
-    //     } else {
-    //       res.send(400);
-    //     }
-    //   });
   } else {
     res.send(400);
   }

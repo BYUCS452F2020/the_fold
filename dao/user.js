@@ -2,7 +2,7 @@ var connection = require("./connection.js").getConnection;
 const User = require("../mongodb_connections.js").User();
 
 let exists = async (email) => {
-  let result = await User.find({email: email});
+  let result = await User.find({Email: email});
   if(result.length){
     return true;
   }
@@ -53,14 +53,14 @@ let getAdminUsersWard = (userId) => {
 
 
 let makeUserAdmin = (userId, wardId) => {
-  return new Promise((resolve, reject) => {
-    let query = `INSERT INTO WardAdmin (UserID, WardID) VALUES(?,?)`;
-    let args = [userId, wardId]
-    connection().query(query, args, (error, results, fields) => {
-      if (error) reject(error);
-      resolve(results.insertId);
-    })
-  })
+  // return new Promise((resolve, reject) => {
+  //   let query = `INSERT INTO WardAdmin (UserID, WardID) VALUES(?,?)`;
+  //   let args = [userId, wardId]
+  //   connection().query(query, args, (error, results, fields) => {
+  //     if (error) reject(error);
+  //     resolve(results.insertId);
+  //   })
+  // })
 }
 module.exports = {
   create: create,

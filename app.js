@@ -23,7 +23,6 @@ var db = require('./mongodb_connections');
 // firebase.readDatabase();
 
 db.startMongoDB();
-const user = db.createUserTable();
 
 
 var app = express();

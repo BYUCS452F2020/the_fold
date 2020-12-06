@@ -3,8 +3,8 @@ var GoogleLogin = require("../mongodb_connections").GoogleLogin();
 
 let getUserIdFromToken = async (googleToken) => {
   let result = await GoogleLogin.find({GoogleToken: googleToken})
-  if(result[0].UserID){
-    return result.UserID
+  if(result.length && result[0].UserID){
+    return result[0].UserID
   }
   return null;
   // return new Promise((resolve, reject) => {
@@ -21,7 +21,7 @@ let getUserIdFromToken = async (googleToken) => {
 };
 
 let create = async (googleID, userId) => {
-  let saveObj = new GoogleLogin({GoogleID: googleID, UserID: userId});
+  let saveObj = new GoogleLogin({GoogleToken: googleID, UserID: userId});
   let result = await saveObj.save();
 
   // return new Promise((resolve, reject) => {
