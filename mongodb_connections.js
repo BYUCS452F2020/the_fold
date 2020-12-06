@@ -11,7 +11,7 @@ function startMongoDB() {
 function User() {
     // Create a scheme.
     const userSchema = new mongoose.Schema({
-        UserID: Number,
+        // UserID: Number,
         FullName: String,
         Email: String,
     });
@@ -24,7 +24,7 @@ function User() {
 function AuthToken() {
     // Create a scheme.
     const authTokenSchema = new mongoose.Schema({
-        AuthTokenID: Number,
+        // AuthTokenID: Number,
         AuthToken: String,
         UserID: Number
     });
@@ -36,7 +36,7 @@ function AuthToken() {
 function GoogleLogin() {
     // Create a scheme.
     const googleLoginSchema = new mongoose.Schema({
-        GoogleLoginID: Number,
+        // GoogleLoginID: Number,
         GoogleToken: String,
         UserID: Number
     });
@@ -48,7 +48,7 @@ function GoogleLogin() {
 function Ward() {
     // Create a scheme.
     const wardSchema = new mongoose.Schema({
-        WardID: Number,
+        // WardID: Number,
         Code: String,
         Name: String,
         Program: Array
@@ -61,7 +61,7 @@ function Ward() {
 function WardAdmin() {
     // Create a scheme.
     const wardAdminSchema = new mongoose.Schema({
-        WardAdminID: Number,
+        // WardAdminID: Number,
         UserID: Number,
         WardID: Number,
     });
