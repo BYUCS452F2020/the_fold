@@ -26,7 +26,7 @@ function AuthToken() {
     const authTokenSchema = new mongoose.Schema({
         // AuthTokenID: Number,
         AuthToken: String,
-        UserID: Number
+        UserID: String
     });
     
     // Create a model.
@@ -38,7 +38,7 @@ function GoogleLogin() {
     const googleLoginSchema = new mongoose.Schema({
         // GoogleLoginID: Number,
         GoogleToken: String,
-        UserID: Number
+        UserID: String
     });
     
     // Create a model.
@@ -62,8 +62,8 @@ function WardAdmin() {
     // Create a scheme.
     const wardAdminSchema = new mongoose.Schema({
         // WardAdminID: Number,
-        UserID: Number,
-        WardID: Number,
+        UserID: String,
+        WardID: String,
     });
     
     // Create a model.
