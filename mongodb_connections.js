@@ -8,7 +8,7 @@ function startMongoDB() {
     });
 }
 
-function createUserTable() {
+function User() {
     // Create a scheme for items in the museum: a title and a path to an image.
     const userSchema = new mongoose.Schema({
         UserID: Number,
@@ -21,7 +21,24 @@ function createUserTable() {
     return user;
 }
 
+function AuthToken() {
+
+}
+function GoogleLogin() {
+
+}
+function Ward() {
+
+}
+function WardAdmin() {
+
+}
+
 module.exports = {
     startMongoDB: startMongoDB,
-    createUserTable: createUserTable
+    User: User,
+    AuthToken: AuthToken,
+    GoogleLogin: GoogleLogin,
+    Ward: Ward,
+    WardAdmin: WardAdmin,
   };
