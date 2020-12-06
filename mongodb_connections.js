@@ -51,7 +51,7 @@ function Ward() {
         WardID: Number,
         Code: String,
         Name: String,
-        ProgramItem: Array
+        Program: Array
     });
     
     // Create a model.
