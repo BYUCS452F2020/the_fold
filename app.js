@@ -5,13 +5,26 @@ var path = require("path");
 var logger = require("morgan");
 var usersRouter = require("./routes/users");
 var wardRouter = require("./routes/ward");
-var firebase = require('./firebase.js');
-// var schema = require('./dao/schema.js')
+// var schema = require('./dao/schema.js');
+
+// var firebase = require('./firebase.js');
+
+// var firebase = require('./realtime_firebase.js');
+
+var db = require('./mongodb_connections');
 
 // knexHandler();
 // schema.dropTables();
 // schema.createTables();
-firebase.startFirebase();
+
+// firebase.startFirebase();
+// firebase.startRTFirebase();
+// firebase.writeUserData(4593560, 'Ada Lovelace', 'Ada.lovelace@gmail.com');
+// firebase.readDatabase();
+
+db.startMongoDB();
+const user = db.createUserTable();
+
 
 var app = express();
 
