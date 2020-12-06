@@ -30,7 +30,7 @@ function AuthToken() {
     });
     
     // Create a model.
-    const authToken = mongoose.model('authToken', authTokenSchema);
+    const authToken = mongoose.model('AuthToken', authTokenSchema);
     return authToken;
 }
 function GoogleLogin() {
@@ -59,6 +59,9 @@ function Ward() {
     return wardLogin;
 }
 function WardAdmin() {
+    if (mongoose.modelNames().indexOf('WardAdmin') != -1) {
+        return mongoose.model('WardAdmin');
+    }
     // Create a scheme.
     const wardAdminSchema = new mongoose.Schema({
         // WardAdminID: Number,

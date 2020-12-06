@@ -1,9 +1,14 @@
 const uuid = require("uuid").v4;
-var connection = require("./connection.js").getConnection;
+// var connection = require("./connection.js").getConnection;
 const AuthToken = require("../mongodb_connections.js").AuthToken();
 
 //untested and unused
 let exists = async (token) => {
+  let result = await AuthToken.find({AuthToken: token});
+  if(result.length){
+    return true;
+  }
+  return false;
   // return new Promise((resolve, reject) => {
   //   let query = `SELECT COUNT(AuthTokenID) as count FROM AuthToken WHERE AuthToken=?`;
   //   let args = [token];
@@ -38,6 +43,11 @@ let create = async (userId) => {
 
 //untested
 let getUserIDFromToken = async (token) => {
+  let result = await AuthToken.find({AuthToken: token});
+  if (result.length && result[0]) {
+      return result[0]._id;
+  }
+  return null;
   // return new Promise((resolve, reject) => {
   //   let query = `SELECT UserID FROM AuthToken WHERE AuthToken=?`;
   //   let args = [token];

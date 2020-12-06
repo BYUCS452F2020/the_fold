@@ -1,5 +1,6 @@
-var connection = require("./connection.js").getConnection;
+// var connection = require("./connection.js").getConnection;
 const User = require("../mongodb_connections.js").User();
+const WardAdmin = require("../mongodb_connections.js").WardAdmin();
 
 let exists = async (email) => {
   let result = await User.find({Email: email});
@@ -37,7 +38,12 @@ let create = async (name, email) => {
 };
 
 //untested
-let getAdminUsersWard = (userId) => {
+let getAdminUsersWard = async (userId) => {
+  let result = await WardAdmin.find({UserID: userId});
+  if (result.length && result[0]) {
+      return result[0].WardID;
+  }
+  return null;
   // return new Promise((resolve, reject) => {
   //   let query = `SELECT * FROM WardAdmin WHERE UserID=?`;
   //   let args = [userId];
@@ -52,7 +58,10 @@ let getAdminUsersWard = (userId) => {
 }
 
 
-let makeUserAdmin = (userId, wardId) => {
+let makeUserAdmin = async (userId, wardId) => {
+  let saveObj = new WardAdmin({ UserID: userId, WardID: wardId });
+  let result = await saveObj.save();
+  return result._id;
   // return new Promise((resolve, reject) => {
   //   let query = `INSERT INTO WardAdmin (UserID, WardID) VALUES(?,?)`;
   //   let args = [userId, wardId]

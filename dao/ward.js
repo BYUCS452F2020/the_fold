@@ -1,6 +1,9 @@
-var connection = require("./connection.js").getConnection;
-const Ward = require('./../mongodb_connections.js').Ward;
-const WardAdmin = require('./../mongodb_connections.js').WardAdmin;
+// var connection = require("./connection.js").getConnection;
+const Ward = require('../mongodb_connections.js').Ward();
+// const WardAdmin = require('./../mongodb_connections.js').WardAdmin();
+// const WardAdmin = require('./../dao/user').WardAdmin();
+const WardAdmin = require("../mongodb_connections.js").WardAdmin();
+
 
 
 let create = async (name, code) => {
@@ -19,7 +22,7 @@ let create = async (name, code) => {
 
 let getWardIDFromCode = async (wardCode) => {
     let result = await Ward.find({Code: wardCode});
-    if (result.length) {
+    if (result.length && result[0]) {
         return result[0]._id;
     }
     return null;
@@ -35,7 +38,7 @@ let getWardIDFromCode = async (wardCode) => {
 
 let getWardName = async (wardId) => {
     let result = await Ward.find({_id: wardId});
-    if (result.length) {
+    if (result.length && result[0]) {
         return result[0].Name;
     }
     return null;
@@ -51,7 +54,7 @@ let getWardName = async (wardId) => {
 
 let getWardCode = async (wardId) => {
     let result = await Ward.find({_id: wardId});
-    if (result.length) {
+    if (result.length && result[0]) {
         return result[0].Code;
     }
     return null;
@@ -67,7 +70,7 @@ let getWardCode = async (wardId) => {
 
 let getProgram = async (wardId) => {
     let result = await Ward.find({_id: wardId});
-    if (result.length) {
+    if (result.length && result[0]) {
         return result[0].Program;
     }
     return null;
@@ -118,7 +121,7 @@ let setProgram = async (wardId, program) => {
 
 let isAdmin = async (wardId, userId) => {
     let result = await WardAdmin.find({WardID: wardId, UserID: userId});
-    if (result.length) {
+    if (result.length && result[0]) {
         return true;
     }
     return false;
