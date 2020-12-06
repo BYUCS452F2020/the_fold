@@ -17,7 +17,7 @@ let create = async (name, code) => {
 //   });
 };
 
-let getWardIDFromCode = (wardCode) => {
+let getWardIDFromCode = async (wardCode) => {
     let result = await Ward.find({Code: wardCode});
     if (result.length) {
         return result[0]._id;
@@ -33,7 +33,7 @@ let getWardIDFromCode = (wardCode) => {
     // })
 }
 
-let getWardName = (wardId) => {
+let getWardName = async (wardId) => {
     let result = await Ward.find({_id: wardId});
     if (result.length) {
         return result[0].Name;
@@ -49,7 +49,7 @@ let getWardName = (wardId) => {
     // })
 }
 
-let getWardCode = (wardId) => {
+let getWardCode = async (wardId) => {
     let result = await Ward.find({_id: wardId});
     if (result.length) {
         return result[0].Code;
@@ -65,7 +65,7 @@ let getWardCode = (wardId) => {
     // })
 }
 
-let getProgram = (wardId) => {
+let getProgram = async (wardId) => {
     let result = await Ward.find({_id: wardId});
     if (result.length) {
         return result[0].Program;
@@ -83,7 +83,7 @@ let getProgram = (wardId) => {
     // })
 };
 
-let setProgram = (wardId, program) => {
+let setProgram = async (wardId, program) => {
     await Ward.updateOne({ _id: wardId }, {
         Program: program
       });
@@ -116,7 +116,7 @@ let setProgram = (wardId, program) => {
     // })
 };
 
-let isAdmin = (wardId, userId) => {
+let isAdmin = async (wardId, userId) => {
     let result = await WardAdmin.find({WardID: wardId, UserID: userId});
     if (result.length) {
         return true;
